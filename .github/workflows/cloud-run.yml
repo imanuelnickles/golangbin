@@ -6,6 +6,7 @@ on:
 
 env:
   PROJECT_ID: ${{ vars.PROJECT_ID }}
+  env_var: ${{ vars.ENV_CONTEXT_VAR }}
 
 jobs:
   deploy:
@@ -13,4 +14,6 @@ jobs:
     steps:
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
-        run: echo "PROJECT_ID : $PROJECT_ID"
+        run: |
+        echo "PROJECT_ID : $PROJECT_ID"
+        echo "$env_var"
