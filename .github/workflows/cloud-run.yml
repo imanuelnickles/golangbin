@@ -11,10 +11,10 @@ env:
 jobs:
   display-variables:
     runs-on: ubuntu-latest
-    environment: production
+    environment: dev
     steps:
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
         run: |
-          echo "PROJECT_ID : ${{ env.PROJECT_ID }} ${{ vars.PROJECT_ID }}"
-          echo "env var : $env_var"
+          echo "PROJECT_ID : ${{ env.PROJECT_ID }}"
+          echo "env var : ${{ env.env_var }}"
