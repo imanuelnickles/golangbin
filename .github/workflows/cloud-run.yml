@@ -13,4 +13,4 @@ jobs:
     steps:
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
-        run: echo ${{ env.PROJECT_ID }}
+        run: echo "PROJECT_ID : $PROJECT_ID"
