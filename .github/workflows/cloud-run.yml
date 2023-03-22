@@ -54,17 +54,18 @@ env:
   SERVICE: golangbin # TODO: update Cloud Run service name
   REGION: asia-southeast1 # TODO: update Cloud Run service region
   IMAGE_REGISTRY: gcr.io
+  IMAGE: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
 
 jobs:
   deploy:
-    env:
-      IMAGE: ${{ env.IMAGE_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
       contents: 'read'
       id-token: 'write'
 
     runs-on: ubuntu-latest
+    env: dev
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
