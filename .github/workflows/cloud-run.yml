@@ -91,7 +91,7 @@ jobs:
           docker build -t "${{ env.IMAGE }}" -f deploy/Dockerfile .
           docker push "${{ env.IMAGE }}"
 
-      # END - Docker auth and build.
+      # END - Docker auth and build
 
       - name: Deploy to Cloud Run
         id: deploy
