@@ -1,0 +1,16 @@
+name: Build and Deploy to Cloud Run
+
+on:
+  push:
+    branches: [ "production" ]
+
+env:
+  PROJECT_ID: ${{ vars.PROJECT_ID }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # If required, use the Cloud Run url output in later steps
+      - name: Show Output
+        run: echo ${{ env.PROJECT_ID }}
