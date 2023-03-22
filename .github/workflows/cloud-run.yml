@@ -64,7 +64,8 @@ jobs:
       id-token: 'write'
 
     runs-on: ubuntu-latest
-    env: dev
+    with:
+      env: dev
 
     steps:
       - name: Checkout
