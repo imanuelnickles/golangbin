@@ -16,4 +16,4 @@ jobs:
       - name: Show Output
         run: |
           echo "PROJECT_ID : ${{ env.PROJECT_ID }}"
-          echo "$env_var"
+          echo "env var : $env_var"
