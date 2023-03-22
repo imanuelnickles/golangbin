@@ -58,7 +58,7 @@ env:
 jobs:
   deploy:
     env:
-      IMAGE: ${{ IMAGE_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
+      IMAGE: ${{ env.IMAGE_REGISTRY }}/${{ env.PROJECT_ID }}/${{ env.SERVICE }}:${{ github.sha }}
     # Add 'id-token' with the intended permissions for workload identity federation
     permissions:
       contents: 'read'
