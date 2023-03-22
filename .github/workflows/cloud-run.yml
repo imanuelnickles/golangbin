@@ -4,10 +4,6 @@ on:
   push:
     branches: [ "production" ]
 
-env:
-  PROJECT_ID: ${{ vars.PROJECT_ID }}
-  env_var: ${{ vars.ENV_CONTEXT_VAR }}
-
 jobs:
   display-variables:
     runs-on: ubuntu-latest
@@ -17,4 +13,4 @@ jobs:
       - name: Show Output
         run: |
           echo "PROJECT_ID : ${{ vars.PROJECT_ID }}"
-          echo "env var : ${{ env.env_var }}"
+          echo "SA : ${{ secrets.SERVICE_ACCOUNTS }}"
