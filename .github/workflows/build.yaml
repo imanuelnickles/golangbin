@@ -51,7 +51,8 @@ on:
 
 jobs:
   build:
-    # Add 'id-token' with the intended permissions for workload identity federations
+    # Add 'id-token' with the intended permissions for workload identity federation
+    environment: production
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -90,8 +91,9 @@ jobs:
     uses: ./.github/workflows/deploy.yaml
     needs: 
       - build
+    environment: production
     with:
-      service: ${{ vars.SERVICE }}anjing
+      service: ${{ vars.SERVICE }}
       region: ${{ vars.REGION }}
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
     secrets:
