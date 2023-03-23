@@ -49,9 +49,6 @@ on:
   push:
     branches: [ "production" ]
 
-env:
-  IMAGE: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
-
 jobs:
   build:
     # Add 'id-token' with the intended permissions for workload identity federation
@@ -85,7 +82,7 @@ jobs:
       - name: Build and Push Container
         run: |-
           docker build -t "${{ env.IMAGE }}" -f deploy/Dockerfile .
-          docker push "${{ env.IMAGE }}"
+          docker push "${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}"
 
       # END - Docker auth and build
   deploy-dev:
@@ -95,7 +92,7 @@ jobs:
     with:
       service: ${{ vars.SERVICE }}
       region: ${{ vars.REGION }}
-      image: ${{ env.IMAGE }}
+      image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
     secrets:
       gcp_credentials: ${{ secrets.GCP_SA_CREDENTIALS }}
 
