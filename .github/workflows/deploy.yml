@@ -1,0 +1,30 @@
+name: Deploy
+
+on:
+  workflow_call:
+    inputs:
+      service:
+        required: true
+        type: string
+      region:
+        required: true
+        type: string
+      image:
+        required: true
+        type: string
+    secrets:
+
+
+jobs:
+  deploy:
+      - name: Deploy to Cloud Run
+        id: deploy
+        uses: google-github-actions/deploy-cloudrun@v0
+        with:
+          service: ${{ inputs.service }}
+          region: ${{ inputs.region }}
+          image: ${{ inputs.image }}
+
+      # If required, use the Cloud Run url output in later steps
+      - name: Show Output
+        run: echo ${{ steps.deploy.outputs.url }}

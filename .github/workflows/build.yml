@@ -42,9 +42,10 @@
 #   Container Registry vs Artifact Registry   - https://cloud.google.com/blog/products/application-development/understanding-artifact-registry-vs-container-registry
 #   Principle of least privilege              - https://cloud.google.com/blog/products/identity-security/dont-get-pwned-practicing-the-principle-of-least-privilege
 
-name: Build and Deploy to Cloud Run
+name: Build
 
 on:
+  workflow_dispatch:
   push:
     branches: [ "production" ]
 
@@ -55,7 +56,7 @@ env:
   IMAGE: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
 
 jobs:
-  deploy:
+  build:
     # Add 'id-token' with the intended permissions for workload identity federation
     environment: dev
     permissions:
@@ -90,15 +91,11 @@ jobs:
           docker push "${{ env.IMAGE }}"
 
       # END - Docker auth and build
-
-      - name: Deploy to Cloud Run
-        id: deploy
-        uses: google-github-actions/deploy-cloudrun@v0
-        with:
+    deploy:
+      uses: ./github/workflows/deploy.yml
+      needs: 
+        - build
+      with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           image: ${{ env.IMAGE }}
-
-      # If required, use the Cloud Run url output in later steps
-      - name: Show Output
-        run: echo ${{ steps.deploy.outputs.url }}
