@@ -91,12 +91,12 @@ jobs:
           docker push "${{ env.IMAGE }}"
 
       # END - Docker auth and build
-    deploy-dev:
-      uses: ./.github/workflows/deploy.yaml
-      needs: 
-        - build
-      with:
-          service: ${{ env.SERVICE }}
-          region: ${{ env.REGION }}
-          image: ${{ env.IMAGE }}
-      secrets:
+  deploy-dev:
+    uses: ./.github/workflows/deploy.yaml
+    needs: 
+      - build
+    with:
+        service: ${{ env.SERVICE }}
+        region: ${{ env.REGION }}
+        image: ${{ env.IMAGE }}
+    secrets:
