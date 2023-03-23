@@ -52,7 +52,7 @@ on:
 jobs:
   build:
     # Add 'id-token' with the intended permissions for workload identity federation
-    environment: production
+    #environment: production
     permissions:
       contents: 'read'
       id-token: 'write'
