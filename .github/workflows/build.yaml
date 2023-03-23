@@ -51,7 +51,7 @@ on:
 
 jobs:
   build:
-    # Add 'id-token' with the intended permissions for workload identity federation
+    # Add 'id-token' with the intended permissions for workload identity federations
     permissions:
       contents: 'read'
       id-token: 'write'
