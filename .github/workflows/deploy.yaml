@@ -12,6 +12,7 @@ on:
       image:
         required: true
         type: string
+
     secrets:
       gcp_credentials:
         required: true
