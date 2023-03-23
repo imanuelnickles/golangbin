@@ -52,7 +52,6 @@ on:
 jobs:
   build:
     # Add 'id-token' with the intended permissions for workload identity federation
-    environment: dev
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -88,10 +87,9 @@ jobs:
 
       # END - Docker auth and build
   deploy:
+    uses: ./.github/workflows/deploy.yaml
     needs: 
       - build
-    environment: dev
-    uses: ./.github/workflows/deploy.yaml
     with:
       service: ${{ vars.SERVICE }}anjing
       region: ${{ vars.REGION }}
