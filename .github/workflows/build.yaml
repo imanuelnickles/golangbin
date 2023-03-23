@@ -58,6 +58,8 @@ jobs:
       id-token: 'write'
 
     runs-on: ubuntu-latest
+    env:
+      IMAGE: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
 
     steps:
       - name: Checkout
@@ -82,7 +84,7 @@ jobs:
       - name: Build and Push Container
         run: |-
           docker build -t "${{ env.IMAGE }}" -f deploy/Dockerfile .
-          docker push "${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}"
+          docker push "${{ env.IMAGE }}"
 
       # END - Docker auth and build
   deploy-dev:
