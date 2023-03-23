@@ -89,6 +89,7 @@ jobs:
       # END - Docker auth and build
   deploy-dev:
     uses: ./.github/workflows/deploy.yaml
+    environment: dev
     needs: 
       - build
     with:
