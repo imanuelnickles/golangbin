@@ -88,9 +88,10 @@ jobs:
 
       # END - Docker auth and build
   deploy:
-    uses: ./.github/workflows/deploy.yaml
     needs: 
       - build
+    environment: dev
+    uses: ./.github/workflows/deploy.yaml
     with:
       service: ${{ vars.SERVICE }}anjing
       region: ${{ vars.REGION }}
