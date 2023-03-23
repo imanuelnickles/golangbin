@@ -50,6 +50,7 @@ on:
     branches: [ "production" ]
 
 jobs:
+  test:
   build:
     # Add 'id-token' with the intended permissions for workload identity federation
     environment: dev
@@ -87,13 +88,12 @@ jobs:
           docker push "${{ env.IMAGE }}"
 
       # END - Docker auth and build
-  deploy-dev:
+  deploy:
     uses: ./.github/workflows/deploy.yaml
-    environment: dev
     needs: 
       - build
     with:
-      service: ${{ vars.SERVICE }}
+      service: ${{ vars.SERVICE }}anjing
       region: ${{ vars.REGION }}
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
     secrets:

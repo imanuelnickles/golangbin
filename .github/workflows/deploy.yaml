@@ -4,14 +4,14 @@ on:
   workflow_call:
     inputs:
       service:
-        required: true
         type: string
+        required: true
       region:
-        required: true
         type: string
+        required: true
       image:
-        required: true
         type: string
+        required: true
 
     secrets:
       gcp_credentials:
@@ -19,7 +19,7 @@ on:
 
 
 jobs:
-  deploy:
+  cloud-run:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Cloud Run Service
