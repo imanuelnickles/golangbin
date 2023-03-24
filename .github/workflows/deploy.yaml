@@ -41,9 +41,9 @@ jobs:
           # service: ${{ inputs.service }}
           # region: ${{ inputs.region }}
           # image: ${{ inputs.image }}
-        service: ${{ vars.SERVICE }}
-        region: ${{ vars.REGION }}
-        image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
+          service: ${{ vars.SERVICE }}
+          region: ${{ vars.REGION }}
+          image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
 
       # If required, use the Cloud Run url output in later steps
       - name: Show Output
