@@ -90,11 +90,11 @@ jobs:
     if: ${{ !startsWith(github.ref, 'refs/tags/release-') }}
     needs: 
       - build
-    with:
-      env: production
-      service: ${{ vars.SERVICE }}
-      region: ${{ vars.REGION }}
-      image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
-    secrets:
-      gcp_credentials: ${{ secrets.GCP_SA_CREDENTIALS }}
+    # with:
+    #   env: production
+    #   service: ${{ vars.SERVICE }}
+    #   region: ${{ vars.REGION }}
+    #   image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
+    # secrets:
+    #   gcp_credentials: ${{ secrets.GCP_SA_CREDENTIALS }}
 
