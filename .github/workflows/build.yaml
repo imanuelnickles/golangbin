@@ -53,7 +53,7 @@ on:
 jobs:
   build:
     # Add 'id-token' with the intended permissions for workload identity federation
-    #environment: production
+    environment: production
 
     runs-on: ubuntu-latest
     env:
