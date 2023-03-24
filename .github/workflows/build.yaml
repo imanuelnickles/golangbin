@@ -93,6 +93,7 @@ jobs:
     needs: 
       - build
     with:
+      env: dev
       service: ${{ vars.SERVICE }}
       region: ${{ vars.REGION }}
       image: ${{ vars.IMAGE_REGISTRY }}/${{ vars.PROJECT_ID }}/${{ vars.SERVICE }}:${{ github.sha }}
